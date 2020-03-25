@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Edit Wish</title>
+</head>
+<body class= "p-3">
+    <div class="d-flex flex-row justify-content-between">
+    <h2>Hello {{ user.first_name }}! lets edit your wish!</h2>
+    <a href="/logout">Log Out</a>
+    </div>
+    <div class="p-5">
+                {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                {% if 'edit_destination' in message.tags %}
+                    <li {% if message.tags %} class="text-danger {{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endif %}
+                {% endfor %}
+            </ul>
+                {% endif %}
+    </div>
+    <form action="/update" method="POST">
+        {% csrf_token %}
+    <div class ="mt-5">
+    <form action="/add_new" method="POST">
+        {% csrf_token %}
+    <div class ="mt-5">
+
+        <label for="item">Destination:</label><br>
+        <input type="text" value="{{ trip.destination }}" name="destination"><br>
+        <label for="item">Start Date:</label><br>
+        <input type="date" name="start" value= {{ trip.start_date }} |date:"Y-m-d"></br>
+        <label for="end">End Date:</label></br>
+        <input type="date" name="end" value={{ trip.end_date }} |date:"Y-m-d"> </br>
+        <label for="plan">Plan:</label><br>
+        <p>{{ trip.end_date }}</p>
+        <textarea name="plan" row="2" columns="20">{{ trip.plan }}</textarea><br><br>
+        <input type="submit" value="Submit">
+        <input type="hidden" value="{{ trip.id }}" name="trip_id">
+        </form>
+        <form action="/dashboard" method="get">
+    <input type="submit" value="Cancel" 
+         name="Submit">
+    </form>
+    </div>
+    </form> 
+</body>
+</html>

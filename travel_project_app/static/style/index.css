@@ -1,0 +1,57 @@
+
+.container{
+    padding: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.box_one{
+    display: flex;
+    flex-direction: column;
+    margin: 35px;
+    background-color: rgb(208, 194, 222);
+    border: solid rgb(194, 158, 227);
+    border-style: outset;
+    width: 350px;
+    height: 425px; 
+    padding: 10px
+}
+.box_two{
+    display: flex;
+    flex-direction: column;
+    margin: 35px;
+    background-color: rgb(208, 194, 222);
+    border: solid rgb(194, 158, 227);;
+    border-style: outset; 
+    width: 350px;
+    height: 425px; 
+    padding: 10px
+}
+.registration{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.labels{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+.labels > label{
+    margin:5px;
+    padding:5px; 
+}
+.forms{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.forms > input{
+    margin:5px;
+    padding:5px; 
+}
+.text{
+    margin-top: 15px;
+}
+

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style/dashboard.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>travel dashboard</title>
+</head>
+<body>
+    <div class="con">
+        <div class="d-flex flex-row justify-content-between">
+            <h2>Hello {{ user.first_name }}!</h2>
+            <a href="/trips/new">Add a trip</a>
+            <a href="/logout">Log Out</a>
+           
+        </div>
+        </br>
+        </br>
+        <div class='table'>
+            <h4 class = "mt-5">your trips:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Plan</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dest in my_trips %}
+                    <tr>
+                        <td><a href="/trips/{{ dest.id }}">{{ dest.destination }}</a></td>
+                        <td>{{ dest.start_date }}</td>
+                        <td>{{ dest.end_date }}</td>
+                        <td>{{ dest.plan }}</td>
+                        <td><a href="/remove/{{ dest.id }}">| remove |</a>
+                        <a href="/trips/edit/{{ dest.id }}">edit |</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            </br>
+            <h4 class = "mt-5">other trips:</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Destination</th>
+                        <th>Start date</th>
+                        <th>End Date</th>
+                        <th>Plan</th>
+                        <th>Actions</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dest in other_trips %}
+                    <tr>
+                        <td><a href="/trips/{{ dest.id }}">{{ dest.destination }}</a></td>
+                        <td>{{ dest.start_date }}</td>
+                        <td>{{ dest.end_date }}</td>
+                        <td>{{ dest.plan }}</td>
+                        <td><a href="/join/{{ dest.id }}">| join |</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

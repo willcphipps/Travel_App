@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'style/index.css' %}">
+    
+    <title>login</title>
+</head>
+<body>
+<h2> Welcome! Lets travel!</h2>
+    <div class="container">
+        <div class="box_one">
+            <h2>Registration</h2>
+            <form action="register" method="post">
+            {% csrf_token %}
+            <div class="registration">
+                <div class="labels">
+                    <label for="fname">First Name:</label>
+                    <label for="lname">Last Name:</label>
+                    <label for="email">Email:</label>
+                    <label for="password">Password:</label>
+                    <label for="confirm">Confirm PW:</label>
+                </div>
+                <div class="forms">
+                    <input type="text" name="fname">
+                    <input type="text" name="lname">
+                    <input type="text" name="email">
+                    <input type="password" name="password">
+                    <input type="password" name="confirm">  
+                </div>
+            </div>
+                <input type="submit" value="register">
+            </form>
+
+                {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                {% if 'registration' in message.tags %}
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endif %}
+                {% endfor %}
+            </ul>
+                {% endif %}
+
+        </div>
+        <div class="box_two">
+            <h2>Login</h2>
+            <form action="login" method="post">
+                {% csrf_token %}
+            <div class="registration">
+                <div class="labels">
+                    <label for="email">Email:</label>
+                    <label for="password">Password:</label>
+                </div>
+                <div class="forms">
+                    <input type="text" name="email">
+                    <input type="password" name="password">
+                </div>
+            </div>
+                <input type="submit" value="login">
+            </form>
+                {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}  
+                {% if 'login' in message.tags %} 
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endif %}
+                {% endfor %}
+            </ul>
+                {% endif %}
+        </div>
+    </div>
+
+
+</body>
+</html>

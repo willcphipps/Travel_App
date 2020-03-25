@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Add New</title>
+</head>
+<body class= "p-3">
+    <div class="d-flex flex-row justify-content-between">
+    <h2>Hello {{ user.first_name }}! Make a wish!</h2>
+    <a href="/logout">Log Out</a>
+    </div>
+    <div class="p-3">
+                {% if messages %}
+            <ul class="messages">    
+                {% for message in messages %}    
+                {% if 'new_destination' in message.tags %}
+                    <li {% if message.tags %} class="text-danger {{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endif %}
+                {% endfor %}
+            </ul>
+                {% endif %}
+    </div>
+    <!-- Destinations.objects.create
+     destination=request.POST['destination'], 
+     start_date=request.POST['start'], 
+     end_date=request.POST['end'])
+     'plan' -->
+
+    <form action="/add_new" method="POST">
+        {% csrf_token %}
+    <div class ="mt-5">
+        <label for="item">Destination:</label><br>
+        <input type="text" name="destination"><br>
+        <label for="item">Start Date:</label><br>
+        <input type="date" name="start"></br>
+        <label for="end">End Date:</label></br>
+        <input type="date" name="end"> </br>
+        <label for="plan">Plan:</label><br>
+        <textarea name="plan" row="2" columns="20"></textarea><br><br>
+        <input type="submit" value="Submit">
+        </form>
+        <form action="/dashboard" method="get">
+    <input type="submit" value="Cancel" 
+         name="Submit">
+    </form>
+    </div>
+    </form> 
+
+</body>
+</html>
